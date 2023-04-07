@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+    <link rel="stylesheet" type="text/css" href="employee.component.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    
+  </head>
+  <body class="bg-gray-400">
+    <div class="max-w-screen-2xl mx-auto  border-gray-300">
+      <div class="bg-gray-300 rounded-lg overflow-hidden shadow-md h-screen px-4 py-8">
+        
+        <h1 class="text-3xl font-bold my-8">Employee List</h1>
+        <button class="bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2 my-8" (click)="navigateToAddEmployee()">Add Employee</button>
+        <button class="bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2 my-8 ml-4" (click)="signOut()">Sign out</button>
+        <div class="table-container">
+
+        <table class="w-full  text-left bg-white rounded-lg overflow-hidden shadow-md mt-8">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="bg-gray-400 py-6 px-6 font-medium text-sm uppercase tracking-wider">First Name</th>
+              <th class="bg-gray-400 py-6 px-6 font-medium text-sm uppercase tracking-wider">Last Name</th>
+              <th class="bg-gray-400 py-6 px-6 font-medium text-sm uppercase tracking-wider">Gmail</th>
+              <th class="bg-gray-400 py-6 px-6 font-medium text-sm uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr *ngFor="let employee of employeeList$ | async">
+              <td class="py-8 px-6">{{ employee.first_name }}</td>
+              <td class="py-8 px-6">{{ employee.last_name }}</td>
+              <td class="py-8 px-6">{{ employee.email }}</td>
+              <td class="py-8 px-6">
+                  <button class="bg-blue-600 hover:bg-blue-700 text-white rounded-md px-4 py-2 mr-2" (click)="navigateToUpdateEmployee(employee.eid)">Update</button>
+                <button class="bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2 mr-2" type="button" (click)="deleteEmployee(employee.eid)">Delete</button>
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="viewEmployee(employee)">View</button>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table> 
+      </div>  
+      <app-update-employee *ngIf="updatingEmployee" (employeeUpdated)="onEmployeeUpdated()"></app-update-employee>
+    </div>
+
+    </div>    
+  </body>
+</html>

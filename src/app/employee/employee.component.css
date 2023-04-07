@@ -1,0 +1,18 @@
+.container {
+    max-width: 1024px;
+}
+
+tbody tr {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  tbody tr:hover {
+    background-color: #a0a0a0;
+    transform: scale(1.02);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+
+  }
+  .table-container {
+    max-height: 600px; 
+    overflow-y: auto;
+  }
