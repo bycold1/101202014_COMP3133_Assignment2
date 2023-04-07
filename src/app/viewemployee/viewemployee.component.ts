@@ -16,7 +16,6 @@ export class ViewemployeeComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.employee) {
-      // Redirect to some other page if the employee is not available, for example, the employee list page
       this.router.navigate(['/employee']);
     }
   }

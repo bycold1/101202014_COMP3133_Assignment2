@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GraphqlService } from '../graphql.service';
-import { EmployeeUpdateService } from '../employee-update.service'; // Import EmployeeUpdateService
+import { EmployeeUpdateService } from '../employee-update.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-update-employee',
@@ -16,7 +17,7 @@ export class UpdateEmployeeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private graphqlService: GraphqlService,
-    private employeeUpdateService: EmployeeUpdateService // Inject EmployeeUpdateService
+    private employeeUpdateService: EmployeeUpdateService
   ) { }
 
   ngOnInit(): void {
@@ -30,13 +31,26 @@ export class UpdateEmployeeComponent implements OnInit {
     }
   }
 
-  updateEmployee(first_name: string, last_name: string, email: string, gender: string, salary: number): void {
+  updateEmployee(form: NgForm): void {
+    const { first_name, last_name, email, gender, salary } = form.value;
+
+    if (!first_name || !last_name || !email || !gender || !salary) {
+      this.errorMessage = 'All fields are required';
+      return;
+    }
+
+
+
     this.graphqlService.updateEmployee(this.employee.eid, first_name, last_name, email, gender, salary).subscribe(() => {
-      this.employeeUpdateService.employeeUpdated(); // Notify EmployeeUpdateService that the employee was updated
+      this.employeeUpdateService.employeeUpdated();
       this.router.navigate(['/employee']);
     }, (error) => {
       this.errorMessage = error.message;
     });
+  }
+
+  parseFloat(value: string): number {
+    return parseFloat(value);
   }
 
   navigateToEmployee() {

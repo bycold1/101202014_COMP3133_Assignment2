@@ -6,47 +6,44 @@
     <link rel="stylesheet" type="text/css" href="./viewemployee.component.css">
   </head>
   <body>
-    <div class="flex justify-center items-center h-screen bg-gray-300">
-      <div class="bg-white rounded-lg p-8 shadow-lg">
+    <div class="flex justify-center items-center min-h-screen bg-gray-300">
+      <div class="bg-white rounded-lg p-8 shadow-lg w-full max-w-md">
         
-        <h2 class="text-2xl font-bold mb-4">View Employee</h2>
- 
-        <table class="table-fixed w-full">
-
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">View Employee</h2>
+        <table class="table-auto w-full">
           <tbody *ngIf="employee">
-            <tr>
-              <td>ID</td>
-              <td>{{ employee.eid }}</td>
+            <tr class="border-b border-gray-200">
+              <td class="font-bold text-right pr-4 py-2">ID</td>
+              <td class="py-2">{{ employee.eid }}</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="font-bold text-right pr-4 py-2">First Name</td>
+              <td class="py-2">{{ employee.first_name }}</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="font-bold text-right pr-4 py-2">Last Name</td>
+              <td class="py-2">{{ employee.last_name }}</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="font-bold text-right pr-4 py-2">Email</td>
+              <td class="py-2">{{ employee.email }}</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="font-bold text-right pr-4 py-2">Gender</td>
+              <td class="py-2">{{ employee.gender }}</td>
             </tr>
             <tr>
-              <td>First Name</td>
-              <td>{{ employee.first_name }}</td>
+              <td class="font-bold text-right pr-4 py-2">Salary</td>
+              <td class="py-2">{{ employee.salary }}</td>
             </tr>
-            <tr>
-              <td>Last Name</td>
-              <td>{{ employee.last_name }}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ employee.email }}</td>
-            </tr>
-            <tr>
-              <td>Gender</td>
-              <td>{{ employee.gender }}</td>
-            </tr>
-            <tr>
-              <td>Salary</td>
-              <td>{{ employee.salary }}</td>
-            </tr>
-       
           </tbody>
         </table>
-        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="navigateToEmployee()">
+        <div class="text-center mt-6">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200" (click)="navigateToEmployee()">
             Go back
           </button>
+        </div>
       </div>
-      
     </div>
-    
   </body>
 </html>
