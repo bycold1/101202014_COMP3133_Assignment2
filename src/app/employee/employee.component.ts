@@ -4,6 +4,8 @@ import { GraphqlService } from '../graphql.service';
 import { Observable } from 'rxjs';
 import { EmployeeUpdateService } from '../employee-update.service'; // Import EmployeeUpdateService
 import { ViewemployeeComponent } from '../viewemployee/viewemployee.component';
+import { finalize } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-employee',
@@ -13,9 +15,9 @@ import { ViewemployeeComponent } from '../viewemployee/viewemployee.component';
 export class EmployeeComponent implements OnInit {
   employeeList$!: Observable<any>;
   updatingEmployee: boolean = false;
+  loading: boolean = false;
 
   constructor(private router: Router, private graphqlService: GraphqlService, private employeeUpdateService: EmployeeUpdateService) {
-    // Listen for updates
     this.employeeUpdateService.employeeUpdated$.subscribe(() => {
       this.loadEmployeeList();
     });
@@ -25,9 +27,12 @@ export class EmployeeComponent implements OnInit {
     this.loadEmployeeList();
   }
 
-  loadEmployeeList() {
-    this.employeeList$ = this.getEmployees();
-  }
+ loadEmployeeList() {
+  this.loading = true;
+  this.employeeList$ = this.getEmployees().pipe(
+    finalize(() => this.loading = false)
+  );
+}
 
   getEmployees() {
     return this.graphqlService.getEmployees();
@@ -46,7 +51,7 @@ export class EmployeeComponent implements OnInit {
 
   deleteEmployee(employeeEid: string): void {
     this.graphqlService.deleteEmployee(employeeEid).subscribe(() => {
-      this.loadEmployeeList(); 
+      this.employeeUpdateService.employeeUpdated(); 
     }, (error) => {
       console.error('Error:', error);
     });

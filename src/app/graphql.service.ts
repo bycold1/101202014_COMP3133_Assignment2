@@ -2,33 +2,34 @@ import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 
+const GET_EMPLOYEES_QUERY = gql`
+  query GetEmployees {
+    employees {
+      eid
+      first_name
+      last_name
+      email
+      gender
+      salary
+    }
+  }
+`;
 @Injectable({
   providedIn: 'root'
 })
 export class GraphqlService {
 
   constructor(private apollo: Apollo) { }
+  
 
   // Queries
   getEmployees() {
-    return this.apollo.watchQuery({
-      query: gql`
-        query GetEmployees {
-          employees {
-            eid
-            first_name
-            last_name
-            email
-            gender
-            salary
-          }
-        }
-      `,
-    }).valueChanges.pipe(
-      map((result: any) => result.data.employees)
-    );
+    return this.apollo
+      .watchQuery({
+        query: GET_EMPLOYEES_QUERY,
+      })
+      .valueChanges.pipe(map((result: any) => result.data.employees));
   }
-  
 
   getEmployee(eid: string) {
     return this.apollo.watchQuery({
@@ -92,7 +93,6 @@ export class GraphqlService {
         }
       }
     `;
-  
     return this.apollo.mutate({
       mutation: ADD_EMPLOYEE,
       variables: {
@@ -102,42 +102,72 @@ export class GraphqlService {
         gender,
         salary
       },
+      update: (cache, { data }) => {
+        const addEmployee = (data as any).addEmployee;
+        const currentData: any = cache.readQuery({ query: GET_EMPLOYEES_QUERY });
+        cache.writeQuery({
+          query: GET_EMPLOYEES_QUERY,
+          data: { employees: [...currentData.employees, addEmployee] },
+        });
+      },
     });
   }
   
   updateEmployee(eid: string, first_name: string, last_name: string, email: string, gender: string, salary: number) {
-    return this.apollo.mutate({
-      mutation: gql`
-        mutation UpdateEmployee($eid: ID!, $first_name: String, $last_name: String, $email: String, $gender: String, $salary: Float) {
-          updateEmployee(eid: $eid, first_name: $first_name, last_name: $last_name, email: $email, gender: $gender, salary: $salary) {
-            eid
-            first_name
-            last_name
-            email
-            gender
-            salary
-          }
+    const UPDATE_EMPLOYEE = gql`
+      mutation UpdateEmployee($eid: ID!, $first_name: String, $last_name: String, $email: String, $gender: String, $salary: Float) {
+        updateEmployee(eid: $eid, first_name: $first_name, last_name: $last_name, email: $email, gender: $gender, salary: $salary) {
+          eid
+          first_name
+          last_name
+          email
+          gender
+          salary
         }
-      `,
-      variables: { eid, first_name, last_name, email, gender, salary }
+      }
+    `;
+
+    return this.apollo.mutate({
+      mutation: UPDATE_EMPLOYEE,
+      variables: { eid, first_name, last_name, email, gender, salary },
+      update: (cache, { data }) => {
+        const updateEmployee = (data as any).updateEmployee;
+        const currentData: any = cache.readQuery({ query: GET_EMPLOYEES_QUERY });
+        const newData = currentData.employees.map((emp: any) => (emp.eid === eid ? updateEmployee : emp));
+        cache.writeQuery({
+          query: GET_EMPLOYEES_QUERY,
+          data: { employees: newData },
+        });
+      },
     });
   }
 
   deleteEmployee(eid: string) {
-    return this.apollo.mutate({
-      mutation: gql`
-        mutation DeleteEmployee($eid: ID!) {
-          deleteEmployee(eid: $eid) {
-            eid
-            first_name
-            last_name
-            email
-            gender
-            salary
-          }
+    const DELETE_EMPLOYEE = gql`
+      mutation DeleteEmployee($eid: ID!) {
+        deleteEmployee(eid: $eid) {
+          eid
+          first_name
+          last_name
+          email
+          gender
+          salary
         }
-      `,
-      variables: { eid }
+      }
+    `;
+
+    return this.apollo.mutate({
+      mutation: DELETE_EMPLOYEE,
+      variables: { eid },
+      update: (cache, { data }) => {
+        const deleteEmployee = (data as any).deleteEmployee;
+        const currentData: any = cache.readQuery({ query: GET_EMPLOYEES_QUERY });
+        const newData = currentData.employees.filter((emp: any) => emp.eid !== deleteEmployee.eid);
+        cache.writeQuery({
+          query: GET_EMPLOYEES_QUERY,
+          data: { employees: newData },
+        });
+      },
     });
   }
 }

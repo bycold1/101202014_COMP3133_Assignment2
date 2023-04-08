@@ -13,12 +13,8 @@ export class UpdateEmployeeComponent implements OnInit {
   employee: any;
   errorMessage: string | null = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private graphqlService: GraphqlService,
-    private employeeUpdateService: EmployeeUpdateService
-  ) { }
+  constructor(private route: ActivatedRoute, private router: Router, private graphqlService: GraphqlService, private employeeUpdateService: EmployeeUpdateService) { }
+
 
   ngOnInit(): void {
     const eid = this.route.snapshot.paramMap.get('eid');
