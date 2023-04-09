@@ -20,8 +20,14 @@ npm install
 ```
 4. Change index.html linecode:
 
-from   <base href="/101202014_COMP3133_Assignment2/">
-to   <base href="#">
+from  
+```bash
+<base href="/101202014_COMP3133_Assignment2/">
+```
+to   
+```bash
+<base href="#">
+```
 
 5. Start the development server: 
 ```bash
