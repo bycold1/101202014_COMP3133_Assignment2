@@ -12,11 +12,10 @@ To run the project locally, follow these steps:
 4. Start the development server: ng serve.
 5. Navigate to http://localhost:4200/ in your web browser.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Deployment
+You can view the deployed application on GitHub Pages at https://bycold1.github.io/101202014_COMP3133_Assignment2.
 
 ## Build
 
