@@ -1,7 +1,7 @@
 # AssignmentAngularProject
 
 Assignment Angular Project
-This project is an Angular application that allows users to sign up, log in, add, update, view, and delete employees. The project uses an Apollo Server Heroku backend, which is deployed at https://apollo-server-app.herokuapp.com/graphql. The backend is built using Mongoose and MongoDB
+This project is an Angular application that allows users to sign up, log in, add, update, view, and delete employees. The project uses an Apollo Server Heroku backend, which is deployed at https://apollo-server-app.herokuapp.com/graphql. The backend is built using mainly graphql , Mongoose and MongoDB
 
 ## Getting Started
 To run the project locally, follow these steps:
