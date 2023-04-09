@@ -19,6 +19,7 @@ cd 101202014_COMP3133_Assignment2
 npm install
 ```
 4. Change index.html linecode
+
 from   <base href="/101202014_COMP3133_Assignment2/">
 to   <base href="#">
 
