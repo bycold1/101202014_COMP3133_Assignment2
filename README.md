@@ -22,12 +22,12 @@ npm install
 from   <base href="/101202014_COMP3133_Assignment2/">
 to   <base href="#">
 
-4. Start the development server: 
+5. Start the development server: 
 ```bash
 ng serve
 ```
 
-5. Navigate to http://localhost:4200/ in your web browser.
+6. Navigate to http://localhost:4200/ in your web browser.
 
 The application will automatically reload if you change any of the source files.
 
