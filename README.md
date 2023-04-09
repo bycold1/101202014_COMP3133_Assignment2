@@ -6,10 +6,23 @@ This project is an Angular application that allows users to sign up, log in, add
 ## Getting Started
 To run the project locally, follow these steps:
 
-1. Clone the repository: git clone https://github.com/bycold1/101202014_COMP3133_Assignment2.git.
-2. Navigate to the project directory: cd 101202014_COMP3133_Assignment2.
-3. Install dependencies: npm install.
-4. Start the development server: ng serve.
+1. Clone the repository:
+```bash
+git clone https://github.com/bycold1/101202014_COMP3133_Assignment2.git.
+```
+2. Navigate to the project directory: 
+```bash
+cd 101202014_COMP3133_Assignment2.
+```
+3. Install dependencies:
+```bash
+npm install.
+```
+4. Start the development server: 
+```bash
+ng serve.
+```
+
 5. Navigate to http://localhost:4200/ in your web browser.
 
 The application will automatically reload if you change any of the source files.
