@@ -17,13 +17,17 @@ The application will automatically reload if you change any of the source files.
 ## Deployment
 You can view the deployed application on GitHub Pages at https://bycold1.github.io/101202014_COMP3133_Assignment2.
 
-## Build
+## Built With
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+* Angular CLI version 15.2.4
+* Apollo Server Heroku backend
+* Mongoose and MongoDB
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+
 
 ## Running end-to-end tests
 
