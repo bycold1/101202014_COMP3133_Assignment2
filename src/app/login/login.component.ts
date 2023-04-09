@@ -15,6 +15,7 @@ export class LoginComponent {
   onLogin(email: string, password: string) {
     this.graphqlService.login(email, password).subscribe(({ data }: any) => {
       if (data.login) {
+        localStorage.setItem('token', data.login.token); 
         this.router.navigate(['/employee']);
       } else {
         this.errorMessage = 'Login failed';

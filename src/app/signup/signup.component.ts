@@ -17,6 +17,7 @@ export class SignupComponent {
     this.graphqlService.createUser(userName, email, password).subscribe(
       ({ data }: any) => {
         if (data.createUser) {
+          localStorage.setItem('token', data.createUser.token); 
           this.successMessage = 'User created successfully';
           this.router.navigate(['/login']);
         } else {
@@ -29,7 +30,6 @@ export class SignupComponent {
     );
   }
 
-  // Add this method
   onCancel() {
     this.router.navigate(['/login']);
   }
