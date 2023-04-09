@@ -12,15 +12,15 @@ git clone https://github.com/bycold1/101202014_COMP3133_Assignment2.git.
 ```
 2. Navigate to the project directory: 
 ```bash
-cd 101202014_COMP3133_Assignment2.
+cd 101202014_COMP3133_Assignment2
 ```
 3. Install dependencies:
 ```bash
-npm install.
+npm install
 ```
 4. Start the development server: 
 ```bash
-ng serve.
+ng serve
 ```
 
 5. Navigate to http://localhost:4200/ in your web browser.
