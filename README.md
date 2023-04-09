@@ -1,6 +1,7 @@
 # AssignmentAngularProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+Assignment Angular Project
+This project is an Angular application that allows users to sign up, log in, add, update, view, and delete employees. The project uses an Apollo Server Heroku backend, which is deployed at https://apollo-server-app.herokuapp.com/graphql. The backend is built using Mongoose and MongoDB
 
 ## Development server
 
