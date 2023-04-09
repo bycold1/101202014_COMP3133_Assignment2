@@ -24,9 +24,6 @@ You can view the deployed application on GitHub Pages at https://bycold1.github.
 * Apollo Server Heroku backend
 * Mongoose and MongoDB
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 
 
 ## Running end-to-end tests
